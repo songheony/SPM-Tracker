@@ -21,6 +21,7 @@ class CropAndResizeFunction(Function):
         self.extrapolation_value = extrapolation_value
         self.has_normed = has_normed
 
+    @staticmethod
     def forward(self, image, boxes, box_inds):
         """
         Args:
@@ -55,6 +56,7 @@ class CropAndResizeFunction(Function):
 
         return crops
 
+    @staticmethod
     def backward(self, grad_outputs):
         boxes, box_ind = self.saved_tensors
         grad_outputs = grad_outputs.contiguous()

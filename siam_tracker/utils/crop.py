@@ -75,7 +75,7 @@ def crop_with_boxes(img_tensor, x_crop_boxes, out_height, out_width, crop_inds=N
         img_tensor_minus_avg = img_tensor - img_channel_avg  # minus mean values
     else:
         img_tensor_minus_avg = img_tensor
-    crop_img_tensor = CropAndResizeFunction(out_height, out_width, has_normed=has_normed_coords)(
+    crop_img_tensor = CropAndResizeFunction.apply(out_height, out_width, has_normed=has_normed_coords)(
         img_tensor_minus_avg, crop_boxes, crop_inds)
 
     if avg_channels:
