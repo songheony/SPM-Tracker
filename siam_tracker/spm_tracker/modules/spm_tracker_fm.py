@@ -48,8 +48,8 @@ class FeatExtractor(torch.nn.Module):
                 i_feat = feats[feat_name]
 
             i_roi_boxes = roi_boxes / self.stride_list[ix]
-            i_roi_feat = CropAndResizeFunction.apply(self.out_height, self.out_width, has_normed=False)(
-                i_feat, i_roi_boxes, roi_inds)
+            i_roi_feat = CropAndResizeFunction.apply(
+                i_feat, i_roi_boxes, roi_inds, self.out_height, self.out_width, 0.0, False)
             roi_feats.append(i_roi_feat)
 
         roi_feats = torch.cat(roi_feats, dim=1)
