@@ -36,6 +36,7 @@ class CropAndResizeFunction(Function):
         if image.is_cuda:
             # if image is on GPU device. We should crop it in the same device.
             with torch.cuda.device(image.device.index):
+                image = image.contiguous()
                 crops = _B.forward(image, crop_boxes, box_inds,
                                    extrapolation_value, crop_height, crop_width)
         else:
